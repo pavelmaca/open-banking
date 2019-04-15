@@ -1,0 +1,27 @@
+<?php
+
+$rules = [
+    '@PSR1' => true,
+    '@PSR2' => true,
+    'array_syntax' => ['syntax' => 'short'],
+    'general_phpdoc_annotation_remove' => ["author"],
+];
+
+$excludes = [
+    'vendor',
+    'node_modules',
+];
+
+$finder = PhpCsFixer\Finder::create()
+   ->in(__DIR__)
+   ->exclude($excludes)
+   ->name('*.php')
+   ->ignoreDotFiles(true)
+   ->ignoreVCS(true)
+;
+
+
+return PhpCsFixer\Config::create()
+    ->setRules($rules)
+    ->setFinder($finder)
+;

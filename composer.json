@@ -1,0 +1,34 @@
+{
+  "name": "pavelmaca/open-banking",
+  "description": "OpenBanking Connector",
+  "type": "library",
+  "php": ">=7.2",
+  "require": {
+    "guzzlehttp/guzzle": "^6.2",
+    "composer/ca-bundle": "^1.1",
+    "nette/utils": "^2.5",
+    "doctrine/annotations": "^1.4",
+    "ext-json": "*"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Máca",
+      "email": "maca.pavel@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "PavelMaca\\OpenBanking": "src/"
+    }
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.11",
+    "phpstan/phpstan": "^0.11.5"
+  },
+  "scripts": {
+    "cs-fixer": "php-cs-fixer fix --dry-run --config=.php_cs.dist",
+    "phpstan": "phpstan analyse src"
+  }
+}
