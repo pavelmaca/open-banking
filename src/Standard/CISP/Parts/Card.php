@@ -10,13 +10,13 @@ class Card implements RequestObject
 {
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="cardholderName")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="cardHolderName")
      * @var string
      */
     protected $cardholderName;
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="maskedPan")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="maskedPAN")
      * @var string
      */
     protected $maskedPan;

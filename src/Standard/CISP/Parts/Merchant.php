@@ -18,7 +18,7 @@ class Merchant implements RequestObject
 
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="currency")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="identification")
      * @var string
      */
     protected $identification;

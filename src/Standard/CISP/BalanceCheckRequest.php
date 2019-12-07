@@ -26,10 +26,16 @@ class BalanceCheckRequest implements RequestObject
     protected $card = null;
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="debtorAccount.iban")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="debtorAccount.identification.iban")
      * @var string
      */
     protected $debtorAccountIban;
+
+    /**
+     * @PavelMaca\OpenBanking\Mapping\Property(path="debtorAccount.currency")
+     * @var string
+     */
+    protected $debtorAccountCurrency;
 
     /**
      *  In case that the third party and merchant are different entities.
@@ -43,6 +49,12 @@ class BalanceCheckRequest implements RequestObject
      * @var TransactionDetail
      */
     protected $transactionDetails;
+
+    /**
+     * @PavelMaca\OpenBanking\Mapping\Property(path="authenticationMethod")
+     * @var string
+     */
+    protected $authenticationMethod;
 
 
     public function __construct(string $exchangeIdentification, string $debtorAccountIban, TransactionDetail $transactionDetails)
@@ -101,6 +113,23 @@ class BalanceCheckRequest implements RequestObject
     }
 
     /**
+     * @return string
+     */
+    public function getDebtorAccountCurrency(): string
+    {
+        return $this->debtorAccountCurrency;
+    }
+
+    /**
+     * @param string $debtorAccountCurrency
+     */
+    public function setDebtorAccountCurrency(string $debtorAccountCurrency): void
+    {
+        $this->debtorAccountCurrency = $debtorAccountCurrency;
+    }
+
+
+    /**
      * @return Merchant|null
      */
     public function getMerchant(): ?Merchant
@@ -130,5 +159,21 @@ class BalanceCheckRequest implements RequestObject
     public function setTransactionDetails(TransactionDetail $transactionDetails): void
     {
         $this->transactionDetails = $transactionDetails;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthenticationMethod(): string
+    {
+        return $this->authenticationMethod;
+    }
+
+    /**
+     * @param string $authenticationMethod
+     */
+    public function setAuthenticationMethod(string $authenticationMethod): void
+    {
+        $this->authenticationMethod = $authenticationMethod;
     }
 }

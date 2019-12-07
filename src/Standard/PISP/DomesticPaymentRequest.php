@@ -284,5 +284,4 @@ class DomesticPaymentRequest extends Payment implements RequestObject
     {
         $this->creditorAgent = $creditorAgent;
     }
-
 }

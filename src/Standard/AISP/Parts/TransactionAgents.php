@@ -9,20 +9,17 @@ use PavelMaca\OpenBanking\Standard\ResponseObject;
 class TransactionAgents implements ResponseObject
 {
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="relatedAgents.debtorAgent"type="\PavelMaca\OpenBanking\Standard\AISP\Parts\TransactionAgent")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="debtorAgent",type="\PavelMaca\OpenBanking\Standard\AISP\Parts\TransactionAgent")
      * @var TransactionAgent|null
      */
     protected $debtorAgent;
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="relatedAgents.creditorAgent"type="\PavelMaca\OpenBanking\Standard\AISP\Parts\TransactionAgent")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="creditorAgent",type="\PavelMaca\OpenBanking\Standard\AISP\Parts\TransactionAgent")
      * @var TransactionAgent|null
      */
     protected $creditorAgent;
 
-    /**
-     * @return TransactionAgent|null
-     */
     public function getDebtorAgent(): ?TransactionAgent
     {
         return $this->debtorAgent;

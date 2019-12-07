@@ -16,7 +16,7 @@ class RemittanceInformation implements ResponseObject
 
     /**
      * @PavelMaca\OpenBanking\Mapping\Property(path="structured.creditorReferenceInformation.reference")
-     * @var string[]|null
+     * @var string|null
      */
     protected $creditorReferenceInformation;
 
@@ -29,9 +29,9 @@ class RemittanceInformation implements ResponseObject
     }
 
     /**
-     * @return string[]|null
+     * @return string|null
      */
-    public function getCreditorReferenceInformation(): ?array
+    public function getCreditorReferenceInformation(): ?string
     {
         return $this->creditorReferenceInformation;
     }

@@ -17,6 +17,9 @@ class StandardException extends OpenBankingException
         $this->responseErrors = $responseErrors;
     }
 
+    /**
+     * @return ResponseError[]
+     */
     public function getResponseErrors(): array
     {
         return $this->responseErrors;

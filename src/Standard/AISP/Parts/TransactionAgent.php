@@ -13,19 +13,19 @@ class TransactionAgent extends SimplePartyIdentification
     protected $bic;
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="clearingSystemMemberIdentification.clearingSystemIdentification.code")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="financialInstitutionIdentification.clearingSystemMemberIdentification.clearingSystemIdentification.code")
      * @var string|null
      */
     protected $clearingSystemMemberIdentificationCode;
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="clearingSystemMemberIdentification.clearingSystemIdentification.proprietary")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="financialInstitutionIdentification.clearingSystemMemberIdentification.clearingSystemIdentification.proprietary")
      * @var string|null
      */
     protected $clearingSystemMemberIdentificationProprietary;
 
     /**
-     * @PavelMaca\OpenBanking\Mapping\Property(path="clearingSystemMemberIdentification.memberIdentification")
+     * @PavelMaca\OpenBanking\Mapping\Property(path="financialInstitutionIdentification.clearingSystemMemberIdentification.memberIdentification")
      * @var string|null
      */
     protected $memberIdentification;
