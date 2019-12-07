@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 class ConnectorTest extends TestCase
 {
-    public function testGuzzleInicialization()
+    public function testGuzzleInitialization()
     {
         $auth = new Authenticator();
         $baseUri = 'http://bank.cz';

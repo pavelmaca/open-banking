@@ -14,7 +14,7 @@ use PavelMaca\OpenBanking\Standard\PISP\PaymentStatus;
  *
  * @package PavelMaca\OpenBanking\Standard
  */
-class PaymentInicialization extends BalanceCheck
+class PaymentInitialization extends BalanceCheck
 {
     /** @var PISPConnector */
     protected $bankApi;
@@ -31,16 +31,16 @@ class PaymentInicialization extends BalanceCheck
 
 
     /**
-     * @param Payment $paymentInicialization
+     * @param Payment $paymentInitialization
      * @return PaymentDetail
      * @throws Exception\StandardException
      */
-    public function createPayment(Payment $paymentInicialization): PaymentDetail
+    public function createPayment(Payment $paymentInitialization): PaymentDetail
     {
         //3.2.4
-        $data = $this->bankApi->createPayment($paymentInicialization);
+        $data = $this->bankApi->createPayment($paymentInitialization);
         var_dump($data);
-        return $this->hydratator->hydratePaymentInicialization($data);
+        return $this->hydratator->hydratePaymentInitialization($data);
     }
 
     /**

@@ -10,16 +10,16 @@ use PavelMaca\OpenBanking\Standard\PISP\PaymentStatus;
 
 class PISPHydratator extends CISPHydratator implements PISPHydratatorInterface
 {
-    public function hydratePaymentInicialization(array $data): PaymentDetail
+    public function hydratePaymentInitialization(array $data): PaymentDetail
     {
         /** @var PaymentDetail $paymentDetail */
         $paymentDetail = $this->hydrate(PaymentDetail::class, $data);
         return $paymentDetail;
     }
 
-    public function serializePaymentInicialization(Payment $paymentInicializationRequest): array
+    public function serializePaymentInitialization(Payment $paymentInitializationRequest): array
     {
-        return $this->serialize($paymentInicializationRequest);
+        return $this->serialize($paymentInitializationRequest);
     }
 
     public function hydratePaymentStatus(array $data): PaymentStatus

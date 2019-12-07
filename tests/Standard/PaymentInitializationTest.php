@@ -9,7 +9,7 @@ use GuzzleHttp\Psr7\Response;
 use Nette\Utils\Json;
 use PavelMaca\OpenBanking\Standard\Exception\InvalidParametrException;
 use PavelMaca\OpenBanking\Standard\Exception\NotFoundException;
-use PavelMaca\OpenBanking\Standard\PaymentInicialization;
+use PavelMaca\OpenBanking\Standard\PaymentInitialization;
 use PavelMaca\OpenBanking\Standard\PISP\DomesticPaymentRequest;
 use PavelMaca\OpenBanking\Standard\PISP\Parts\PaymentTypeInformation;
 use PavelMaca\OpenBanking\Standard\PISP\Parts\RemittanceInformation;
@@ -19,7 +19,7 @@ use PavelMaca\OpenBanking\Test\Fixtures\Connector;
 use PavelMaca\OpenBanking\Test\Helper;
 use PHPUnit\Framework\TestCase;
 
-class PaymentInicializationTest extends TestCase
+class PaymentInitializationTest extends TestCase
 {
     /** @var Connector */
     protected $connector;
@@ -33,7 +33,7 @@ class PaymentInicializationTest extends TestCase
         $this->connector = new Connector($auth, $baseUri, 'v1', $mock);
     }
 
-    public function testDomesticPaymentInicialization()
+    public function testDomesticPaymentInitialization()
     {
         $paymentRequest = new DomesticPaymentRequest('NejakeID41785962314574', 1245.44, 'CZK', 'CZ6330300000000000000123', 'CZ7508000000002108589434');
 
@@ -49,16 +49,16 @@ class PaymentInicializationTest extends TestCase
         $remittanceInformation->setUnstructured('/VS/7418529630/SS/1234567890');
         $paymentRequest->setRemittanceInformation($remittanceInformation);
 
-        $data = $this->connector->getPISPHydratator()->serializePaymentInicialization($paymentRequest);
+        $data = $this->connector->getPISPHydratator()->serializePaymentInitialization($paymentRequest);
 
         $exampleData = Json::decode(file_get_contents(__DIR__ . '/../data/pisp/payment_domestic_create_request.json'), Json::FORCE_ARRAY);
 
         $this->assertEquals($exampleData, Helper::filterArrayRecursive($data));
     }
 
-    public function testPaymentInicializationInvalidArgument()
+    public function testPaymentInitializationInvalidArgument()
     {
-        $pisp = new PaymentInicialization($this->connector);
+        $pisp = new PaymentInitialization($this->connector);
 
         $this->connector->getMockHandler()->append(new Response(400, [], file_get_contents(__DIR__ . '/../data/pisp/payment_create_400.json')));
 
@@ -77,7 +77,7 @@ class PaymentInicializationTest extends TestCase
 
     public function testPaymentStatus()
     {
-        $pisp = new PaymentInicialization($this->connector);
+        $pisp = new PaymentInitialization($this->connector);
 
         $this->connector->getMockHandler()->append(new Response(200, [], file_get_contents(__DIR__ . '/../data/pisp/payment_status_200.json')));
         $paymentStatus = $pisp->getPaymentStatus('paymentId');
@@ -88,7 +88,7 @@ class PaymentInicializationTest extends TestCase
 
     public function testPaymentStatusNotFound()
     {
-        $pisp = new PaymentInicialization($this->connector);
+        $pisp = new PaymentInitialization($this->connector);
 
         $this->connector->getMockHandler()->append(new Response(404, [], file_get_contents(__DIR__ . '/../data/pisp/payment_status_404.json')));
 

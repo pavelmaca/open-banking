@@ -150,7 +150,7 @@ class StandardConnector extends Connector implements AISConnector, CISPConnector
 
 
     /**
-     * @param Payment $paymentInicialization
+     * @param Payment $paymentInitialization
      * @return array
      * @throws InvalidParametrException
      * @throws InvalidResponseException
@@ -158,12 +158,12 @@ class StandardConnector extends Connector implements AISConnector, CISPConnector
      * @throws UnauthorisedException
      * @throws UnknowRequestErrorException
      */
-    public function createPayment(Payment $paymentInicialization)
+    public function createPayment(Payment $paymentInitialization)
     {
         return $this->post(
             'payment-initiation/my/payments',
             [],
-            $this->getPISPHydratator()->serializePaymentInicialization($paymentInicialization)
+            $this->getPISPHydratator()->serializePaymentInitialization($paymentInitialization)
         );
     }
 

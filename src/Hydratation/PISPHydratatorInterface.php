@@ -10,9 +10,9 @@ use PavelMaca\OpenBanking\Standard\PISP\PaymentStatus;
 
 interface PISPHydratatorInterface extends CISPHydratatorInterface
 {
-    public function hydratePaymentInicialization(array $data): PaymentDetail;
+    public function hydratePaymentInitialization(array $data): PaymentDetail;
 
-    public function serializePaymentInicialization(Payment $paymentInicializationRequest): array;
+    public function serializePaymentInitialization(Payment $paymentInitializationRequest): array;
 
     public function hydratePaymentStatus(array $data): PaymentStatus;
 }

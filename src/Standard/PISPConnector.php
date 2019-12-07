@@ -12,11 +12,11 @@ interface PISPConnector extends CISPConnector
 {
 
     /**
-     * @param Payment $paymentInicialization
+     * @param Payment $paymentInitialization
      * @return array
      * @throws StandardException
      */
-    public function createPayment(Payment $paymentInicialization);
+    public function createPayment(Payment $paymentInitialization);
 
     /**
      * @param string $paymentId

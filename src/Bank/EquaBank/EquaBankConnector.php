@@ -234,7 +234,7 @@ class EquaBankConnector extends Connector implements AISConnector, CISPConnector
     }
 
     /**
-     * @param Payment $paymentInicialization
+     * @param Payment $paymentInitialization
      * @return array
      * @throws InvalidParametrException
      * @throws InvalidResponseException
@@ -242,12 +242,12 @@ class EquaBankConnector extends Connector implements AISConnector, CISPConnector
      * @throws UnauthorisedException
      * @throws UnknowRequestErrorException
      */
-    public function createPayment(Payment $paymentInicialization)
+    public function createPayment(Payment $paymentInitialization)
     {
         return $this->post(
             $this->buildPath('pisp/', $this->PaymentServicesVersion, 'my/payments'),
             [],
-            $this->getPISPHydratator()->serializePaymentInicialization($paymentInicialization)
+            $this->getPISPHydratator()->serializePaymentInitialization($paymentInitialization)
         );
     }
 
@@ -270,7 +270,7 @@ class EquaBankConnector extends Connector implements AISConnector, CISPConnector
     public function getPISPHydratator(): PISPHydratatorInterface
     {
         return new class() extends PISPHydratator {
-            public function hydratePaymentInicialization(array $data): PaymentDetail
+            public function hydratePaymentInitialization(array $data): PaymentDetail
             {
                 if (is_array($data['requestedExecutionDate'])) {
                     // TODO sandbox bug
@@ -286,7 +286,7 @@ class EquaBankConnector extends Connector implements AISConnector, CISPConnector
                         $data['remittanceInformation']['structured']['creditorReferenceInformation']['reference'][$i] = trim($val);
                     }
                 }
-                return parent::hydratePaymentInicialization($data);
+                return parent::hydratePaymentInitialization($data);
             }
         };
     }
