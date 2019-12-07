@@ -45,7 +45,12 @@ abstract class Connector implements Standard\Connector
         $this->baseURI = $baseURI;
         $this->authenticator = $authenticator;
 
-        $this->httpClient = new Client(
+        $this->httpClient = $this->httpClientFactory();
+    }
+
+    protected function httpClientFactory(): Client
+    {
+        return new Client(
             [
                 RequestOptions::VERIFY => CaBundle::getBundledCaBundlePath(),
                 'base_uri' => $this->baseURI,
@@ -158,8 +163,8 @@ abstract class Connector implements Standard\Connector
      */
     protected function handleErrorRequest(ClientException $exception)
     {
-        if ($exception->hasResponse()) {
-            throw new UnknowRequestErrorException(null, $exception->getCode(), $exception);
+        if (!$exception->hasResponse()) {
+            throw new UnknowRequestErrorException('', $exception->getCode(), $exception);
         }
 
         $response = $exception->getResponse();
@@ -171,9 +176,9 @@ abstract class Connector implements Standard\Connector
             foreach ($responseData['errors'] as $error) {
                 $objErrors[] = new ResponseError(
                     $error['error'],
-                    $error['parameters'],
-                    $error['scope'],
-                    $error['message']
+                    $error['parameters'] ?? null,
+                    $error['scope'] ?? null,
+                    $error['message'] ?? null
                 );
             }
         } catch (JsonException $ex) {
@@ -183,14 +188,14 @@ abstract class Connector implements Standard\Connector
         $responseStatusCode = $response !== null ? $response->getStatusCode() : null;
         switch ($responseStatusCode) {
             case 400:
-                throw new InvalidParametrException(null, $responseStatusCode, $exception, $objErrors);
+                throw new InvalidParametrException('', $responseStatusCode, $exception, $objErrors);
             case 401:
             case 403:
-                throw new UnauthorisedException(null, $responseStatusCode, $exception, $objErrors);
+                throw new UnauthorisedException('', $responseStatusCode, $exception, $objErrors);
             case 404:
-                throw new NotFoundException(null, $responseStatusCode, $exception, $objErrors);
+                throw new NotFoundException('', $responseStatusCode, $exception, $objErrors);
             default:
-                throw new UnknowRequestErrorException(null, $exception->getCode(), $exception);
+                throw new UnknowRequestErrorException('', $exception->getCode(), $exception);
         }
     }
 }

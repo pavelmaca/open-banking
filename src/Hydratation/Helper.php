@@ -10,7 +10,7 @@ abstract class Helper
     {
         $tmp = $array;
         foreach ($path as $key) {
-            $tmp = $tmp[$key];
+            $tmp = $tmp[$key] ?? null;
         }
         return $tmp;
     }

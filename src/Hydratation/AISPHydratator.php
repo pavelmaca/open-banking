@@ -22,7 +22,7 @@ class AISPHydratator extends StandardHydratator implements AISPHydratatorInterfa
             $accounts[] = $this->hydrate(Account::class, $accountData);
         }
 
-        $accountList = new class($data['pageNumber'], $data['pageCount'], $data['nextPage'], $data['pageSize'], $data['totalCount'], $accounts) extends StandardPaging implements AccountList {
+        $accountList = new class($data['pageNumber'], $data['pageCount'], $data['nextPage'], $data['pageSize'], $data['totalCount'] ?? null, $accounts) extends StandardPaging implements AccountList {
             protected $accounts;
 
             public function __construct(?int $pageNumber = null, ?int $pageCount = null, ?int $nextPage = null, ?int $pageSize = null, ?int $totalCount = null, array $accounts = [])
@@ -59,7 +59,7 @@ class AISPHydratator extends StandardHydratator implements AISPHydratatorInterfa
             $transactions[] = $this->hydrate(Transaction::class, $transactionData);
         }
 
-        $transactionList = new class($data['pageNumber'], $data['pageCount'], $data['nextPage'], $data['pageSize'], $data['totalCount'], $transactions) extends StandardPaging implements TransactionList {
+        $transactionList = new class($data['pageNumber'], $data['pageCount'], $data['nextPage'], $data['pageSize'], $data['totalCount'] ?? null, $transactions) extends StandardPaging implements TransactionList {
             protected $transactions = [];
 
             public function __construct(?int $pageNumber = null, ?int $pageCount = null, ?int $nextPage = null, ?int $pageSize = null, ?int $totalCount = null, array $transactions = [])
