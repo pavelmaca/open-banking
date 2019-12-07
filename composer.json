@@ -2,8 +2,8 @@
   "name": "pavelmaca/open-banking",
   "description": "OpenBanking Connector",
   "type": "library",
-  "php": ">=7.2",
   "require": {
+    "php": ">=7.2",
     "guzzlehttp/guzzle": "^6.2",
     "composer/ca-bundle": "^1.1",
     "nette/utils": "^2.5",
